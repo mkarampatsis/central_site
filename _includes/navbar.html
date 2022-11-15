@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" href="{{site_url}}/index.html">@central</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Κέντρο Η/Υ
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{site_url}}/about">Ιστορικό</a>
+                    <a class="dropdown-item" href="{{site_url}}/operrules">Κανονισμός λειτουργίας</a>
+                    <a class="dropdown-item" href="{{site_url}}/responsibilities">Αρμοδιότητες</a>
+                    <a class="dropdown-item" href="{{site_url}}/resources">Εξοπλισμός</a>
+                    <a class="dropdown-item" href="{{site_url}}/pclabs">Εργαστήρια</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{site_url}}/personel">Προσωπικό</a>
+                    <a class="dropdown-item" href="{{ site.baseurl }}/index.html#contact">Επικοινωνία</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Υπηρεσίες
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="https://webmail.ntua.gr/index.php?_host=central.ntua.gr" target="_blank">Webmail</a>
+                    <a class="dropdown-item" href="{{site_url}}/hpc">High Performance Computing</a>
+                    <a class="dropdown-item" href="{{site_url}}/licenses">Δικτυακή αδειοδότηση λογισμικών</a>
+                    <a class="dropdown-item" href="https://acadinfo.central.ntua.gr/gram/anakoin.nsf/anakoinall?openpage" target="_blank">Ανακοινώσεις</a>
+                    <a class="dropdown-item" href="https://acadinfo.central.ntua.gr/sem/semreg.nsf/semp?openform" target="_blank">Σεμινάρια</a>
+                    <a class="dropdown-item" href="{{site_url}}/elearning">Εlearning</a>
+                    <a class="dropdown-item" href="https://acadinfo.central.ntua.gr/yp/sitisi.nsf/webait?openform" target="_blank">Σίτιση</a>
+                    <a class="dropdown-item" href="{{site_url}}/registrations">Εγγραφολόγιο</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Στατιστικά
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{site_url}}/users">Χρήστες</a>
+                    <a class="dropdown-item" href="{{site_url}}/license_usage">Τρέχουσα χρήση λογισμικών</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Wiki
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{site_url}}/licenses">Δικτυακή αδειοδότηση λογισμικών</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{site_url}}/ansys">Ansys</a>
+                    <a class="dropdown-item" href="{{site_url}}/matlab">Matlab</a>
+                    <a class="dropdown-item" href="{{site_url}}/abaqus">Abaqus</a>
+                    <a class="dropdown-item" href="{{site_url}}/comsol">Comsol</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{site_url}}/hpc">High Performance Computing</a>
+                    <a class="dropdown-item" href="{{site_url}}/batch-abaqus">Batch jobs Abaqus</a>
+                    <a class="dropdown-item" href="{{site_url}}/batch-matlab">Batch jobs Matlab</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-2">
+            <li class="nav-item active">
+                <a class="nav-link dropdown-toggle" id="dropdownMyCentral" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    my.central 
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMyCentral">
+                    <a class="dropdown-item" href="https://my.central.ntua.gr/auth/forgotpasswd" target="_blank">Ξέχασα το password</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="https://my.central.ntua.gr/user/webtop" target="_blank">Καρτέλα χρήστη</a>
+                    <a class="dropdown-item" href="https://my.central.ntua.gr/user/webtop" target="_blank">Αλλαγή password</a>
+                    <a class="dropdown-item" href="https://my.central.ntua.gr/user/webtop" target="_blank">Φοιτητικά στοιχεία προπτυχιακών</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="https://my.central.ntua.gr/auth/login" target="_blank">Είσοδος</a>
+                </div>                
+            </li>
+            <!-- <li class="nav-item active"><a class="nav-link" href="#about">EN</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#services">GR</a></li> -->
+        </ul>
+    </div>
+  </nav>

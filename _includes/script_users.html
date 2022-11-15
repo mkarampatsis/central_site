@@ -1,0 +1,127 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		function createChart(data){
+			var all_users = 0;
+			var chartData = [];
+			data.category.forEach(function(element){
+				all_users = all_users + element.active_users
+			});
+			data.category.forEach(function(element){
+				chartData.push({"percentage_of_users":Math.round((100*element.active_users)/all_users), "title":element.desc, "number_of_users":element.active_users})
+			});
+
+			var visitorData = [],
+	    		visitData = [];
+
+			for (var i = 0; i < chartData.length; i++) {
+				visitorData.push(chartData[i]['percentage_of_users'])
+				visitData.push([chartData[i]['title'],chartData[i]['number_of_users']])
+			};
+			
+			var myChart = new Chart('chart_'+data.department.id, {
+				type: 'doughnut',
+				animation:{
+			 		animateScale:true
+			 	},
+				data: {
+					labels: visitData,
+					datasets: [{
+						label: '# of Votes',
+						data: visitorData,
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)',
+							'rgba(20, 163, 58, 1)',
+							'rgba(28, 127, 227, 1)',
+							'rgba(105, 236, 140, 1)',
+							'rgba(227, 28, 74, 1)',
+							'rgba(227, 217, 28, 1)',
+							'rgba(194, 28, 227, 1)',
+							'rgba(227, 28, 28, 1)',
+							'rgba(154, 162, 156, 1)',
+							'rgba(120, 146, 196, 1)',
+							'rgba(196, 120, 174, 1)'
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)',
+							'rgba(20, 163, 58, 1)',
+							'rgba(28, 127, 227, 1)',
+							'rgba(105, 236, 140, 1)',
+							'rgba(227, 28, 74, 1)',
+							'rgba(227, 217, 28, 1)',
+							'rgba(194, 28, 227, 1)',
+							'rgba(227, 28, 28, 1)',
+							'rgba(154, 162, 156, 1)',
+							'rgba(120, 146, 196, 1)',
+							'rgba(196, 120, 174, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options:{
+					responsive: true,
+					legend: false,
+					legendCallback: function(chart) {
+						var legendHtml = [];
+						legendHtml.push('<ul>');
+						var item = chart.data.datasets[0];
+						for (var i=0; i < item.data.length; i++) {
+							legendHtml.push('<li>');
+							legendHtml.push('<span class="chart-legend" style="background-color:' + item.backgroundColor[i] +'"></span>');
+							legendHtml.push('<span class="chart-legend-label-text">' + item.data[i] +'% '+chart.data.labels[i][0]+'</span>');
+							legendHtml.push('</li>');
+						}
+
+						legendHtml.push('</ul>');
+						return legendHtml.join("");
+					},
+					tooltips: {
+						enabled: true,
+						mode: 'index',
+						callbacks: {
+							label: function(tooltipItem, data) {
+								var indice = tooltipItem.index;
+								return data.datasets[0].data[indice] + "% ("+ data.labels[indice][1]+"), " + data.labels[indice][0];
+							}
+						}
+					},
+					title: {
+						display: true,
+						fontSize:20,
+						text: data.department.desc
+					}
+				}
+			});
+
+			$('#chart-'+data.department.id+'-legend').html(myChart.generateLegend());
+		}
+
+		function showUserStatistics(){
+			var url = 'https://backend.central.ntua.gr/jekyll/show-users/';
+			$.get(url, function(data, status){
+				_bydepartments = data.bydepartments;
+				_bycategories = data.bycategories;
+				_when = data.date;
+
+				$("#users_statistics_date").append(moment(_when).utc().format('DD-MM-YYYY HH:mm:ss'));
+				
+				_bydepartments.forEach(function(element) {
+					createChart(element);
+				})
+			});
+		};
+
+		showUserStatistics();
+	})
+
+</script>

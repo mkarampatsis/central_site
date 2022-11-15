@@ -1,0 +1,11 @@
+# Site settings
+title: Computer Center
+email:
+author:
+description:
+url: http://develcentral.ntua.gr
+
+
+
+# Build settings
+include: ['_pages']

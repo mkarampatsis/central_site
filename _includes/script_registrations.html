@@ -1,0 +1,85 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		function checkRegistrationPeriod(start, end){
+			var status = false;
+			var now = new Date();
+			var sdate = new Date(start);
+			var edate = new Date(end);
+			if (sdate <=now && edate>=now) {
+				status = true
+			}
+			return status
+		};
+
+		function findOpenRegistration(link){
+			var enabledLink = null
+			link.forEach(function(element) {
+				if (element.status==true && element.for=='students')
+					enabledLink = element;
+			});
+			return enabledLink;
+		};
+
+		function showRegistrationsUgrads(department) {
+			
+			var url = 'https://backend.central.ntua.gr/jekyll/ugrads-registrations/';
+			$.get(url, {department:department}, function(data, status){
+				_department = data;
+				status = null;
+				enabledRegistration = null;
+				comments = null;
+				
+				$("#"+department+"_start").append(moment(_department.start).utc().format('DD-MM-YYYY'));
+				$("#"+department+"_end").append(moment(_department.end).utc().format('DD-MM-YYYY'));
+				status = checkRegistrationPeriod(_department.start,_department.end);
+
+				if (status) {
+					$("#"+department+"_status").append("ενεργή περίοδος εγγραφών");
+					$("#"+department+"_status").addClass("text-primary");
+					enabledRegistration = findOpenRegistration(_department.link);
+				} else {
+					$("#"+department+"_status").append("εκτός περιόδου εγγραφών");
+					$("#"+department+"_status").addClass("text-danger");
+				}
+
+				if (enabledRegistration){
+					$("#"+department+"_comments").append(enabledRegistration.comments_site);
+					$("#"+department+"_link").attr("href", enabledRegistration.link)
+
+				} else {
+					$("#"+department+"_comments").append("<p>ΕΚΤΟΣ ΠΕΡΙΟΔΟΥ ΕΓΓΡΑΦΩΝ</p>");
+					$("#"+department+"_link").removeAttr('href'); 
+				}
+			});
+		};
+
+		var _department = null;	
+		showRegistrationsUgrads('CV');
+
+		var _department = null;	
+		showRegistrationsUgrads('MC');
+
+		var _department = null;	
+		showRegistrationsUgrads('EL');
+
+		var _department = null;	
+		showRegistrationsUgrads('AR');
+
+		var _department = null;	
+		showRegistrationsUgrads('CH');
+
+		var _department = null;	
+		showRegistrationsUgrads('RS');
+
+		var _department = null;	
+		showRegistrationsUgrads('MM');
+
+		var _department = null;	
+		showRegistrationsUgrads('NM');
+
+		var _department = null;	
+		showRegistrationsUgrads('GE');
+
+	})
+</script>

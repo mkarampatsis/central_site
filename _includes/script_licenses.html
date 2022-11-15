@@ -1,0 +1,35 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		function showLicenses(){
+			var url = 'https://backend.central.ntua.gr/licenses/show-currusage/';
+			$.get(url, function(data, status){
+				_ansys = data.ansys;
+				_matlab = data.matlab;
+				_abaqus = data.abaqus;
+				_when = data.when;
+
+				$("#licenses_usage_when").append(moment(_when).utc().format('DD-MM-YYYY HH:mm:ss'));
+				
+				_abaqus.forEach(function(element) {
+					var markup = "<tr><td>"+element.feature+"</td><td>"+element.total+"</td><td>"+element.used+"</td></tr>";
+					$("#abaqus_table tbody").append(markup);
+				})
+
+				_ansys.forEach(function(element) {
+					var markup = "<tr><td>"+element.feature+"</td><td>"+element.total+"</td><td>"+element.used+"</td></tr>";
+					$("#ansys_table tbody").append(markup);
+				})
+
+				_matlab.forEach(function(element) {
+					var markup = "<tr><td>"+element.feature+"</td><td>"+element.total+"</td><td>"+element.used+"</td></tr>";
+					$("#matlab_table tbody").append(markup);
+				})
+			});
+		};
+		
+		
+		showLicenses();
+	})
+
+</script>
